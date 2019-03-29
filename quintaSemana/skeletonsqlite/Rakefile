@@ -1,6 +1,7 @@
 require 'sinatra/activerecord/rake'
 require './app'
 
+
 require 'active_support/core_ext'
 
 namespace :generate do
@@ -26,6 +27,16 @@ namespace :generate do
           # Remember to create a migration!
         end
       EOF
+    end
+
+    namespace :task_for_log do
+
+  desc "This task set by default as current date for those logs where log_date is nil"
+  task set_by_default_date_of_log: :environment do
+    Log.where("log_date IS NULL").each do |log|
+      log.update_attributes(log_date: log.created_at.to_date)
+        end
+      end
     end
   end
 end
