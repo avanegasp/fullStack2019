@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('div').on('click', function(){
+  $('div').on('click', function(e){
     $('body').removeClass();
       if ($(this).attr('id') == 1) {
             $('body').addClass('yellow')
@@ -8,6 +8,11 @@ $(document).ready(function(){
       } else if ($(this).attr('id') == 3) {
             $('body').addClass('red')
       }
-      console.log(this)
+      console.log(e)
   });
+  $('#input').keyup(function(e) {
+    console.log( e.key );
+    $('#text').text($(this).val())
+});
+
 });
